@@ -297,13 +297,134 @@
             line-height: 1.8;
         }
 
-        /* Projects Section - Coming Soon */
+        /* Projects Section */
         .projects {
             padding: 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-image {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-placeholder {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-link {
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .project-category {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-description {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Coming Soon Container (for future projects) */
         .coming-soon-container {
             text-align: center;
             padding: 4rem 2rem;
@@ -312,6 +433,7 @@
             border: 1px solid rgba(102, 126, 234, 0.1);
             position: relative;
             overflow: hidden;
+            margin-top: 2.5rem;
         }
 
         .coming-soon-container::before {
@@ -331,41 +453,19 @@
         }
 
         .coming-soon-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .coming-soon-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--text-light);
         }
 
         .coming-soon-text {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
-
-        .notify-btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 50px;
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .notify-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            color: var(--text-gray);
         }
 
         /* Team Section */
@@ -582,7 +682,6 @@
             margin: 0 auto;
         }
 
-
         .footer-links {
             display: flex;
             justify-content: center;
@@ -590,8 +689,11 @@
             list-style: none;
             margin-bottom: 1.5rem;
         }
+        
         .footer-logo {
             display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
             font-weight: bold;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -708,6 +810,10 @@
                 width: 200px;
                 text-align: center;
             }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -785,15 +891,37 @@
         </div>
     </section>
 
-    <!-- Projects Section - Coming Soon -->
+    <!-- Projects Section -->
     <section class="projects fade-in" id="projects">
         <h2 class="section-title">Our Projects</h2>
         <p class="section-subtitle">Showcasing our best work</p>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- If you have a screenshot, replace the div below with: <img src="hope-foundation-preview.jpg" alt="Hope Foundation Project"> -->
+                   <img src="Hope-foundation.jpg" alt="Hope Foundation Project">
+                    <div class="project-overlay">
+                        <a href="https://hope-foundation-web.vercel.app" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Hope Foundation</h3>
+                    <p class="project-category">Non-Profit Website</p>
+                    <p class="project-description">A comprehensive web platform designed for Hope Foundation, featuring donation management, volunteer registration, and impact tracking systems.</p>
+                    <div class="project-tags">
+                        <span class="tag">Web Design</span>
+                        <span class="tag">Development</span>
+                        <span class="tag">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coming Soon Section for Future Projects -->
         <div class="coming-soon-container">
             <div class="coming-soon-icon">🚀</div>
-            <h3 class="coming-soon-title">Exciting Projects Coming Soon!</h3>
-            <p class="coming-soon-text">We're currently working on some amazing projects that we can't wait to share with you. Stay tuned for updates!</p>
-            <button class="notify-btn" onclick="alert('Thank you for your interest! We\'ll notify you when our projects are ready.')">Notify Me</button>
+            <h3 class="coming-soon-title">More Exciting Projects Coming Soon!</h3>
+            <p class="coming-soon-text">We're currently working on more amazing projects. Stay tuned for updates!</p>
         </div>
     </section>
 
@@ -859,7 +987,7 @@
                     </li>
                     <li>
                         <i>📍</i>
-                        <span>Aurangabad (Maharashtra,India),  Dubai (United Arab Emirates)</span>
+                        <span>Aurangabad (Maharashtra, India), Dubai (United Arab Emirates)</span>
                     </li>
                     <li>
                         <i>⏰</i>
@@ -999,6 +1127,4 @@
         });
     </script>
 </body>
-
 </html>
-
